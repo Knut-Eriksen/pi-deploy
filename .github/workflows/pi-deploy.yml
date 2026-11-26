@@ -17,7 +17,7 @@ jobs:
           DIR: ${{ inputs.dir }}
         run: |
           cd "$HOME/$DIR"
-          git fetch origin prod
-          git checkout -B prod origin/prod   # fails loudly if someone edited tracked files on the Pi
+          git fetch origin development
+          git checkout -B development origin/development   # fails loudly if someone edited tracked files on the Pi
           docker compose up -d --build
           docker image prune -f

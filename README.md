@@ -1,12 +1,12 @@
 # pi-deploy
 
-Push to `prod` → the project rebuilds and restarts on the Pi.
+Push to `development` → the project rebuilds and restarts on the Pi.
 
 ```
-git push origin main:prod
+git push origin development
   → GitHub runs the project's deploy.yml
   → which calls pi-deploy.yml here
-  → the Pi's runner does: cd ~/<project> && git checkout prod && docker compose up -d --build
+  → the Pi's runner does: cd ~/<project> && git checkout development && docker compose up -d --build
 ```
 
 ## Set up the Pi (once)
@@ -25,7 +25,7 @@ git clone https://github.com/Knut-Eriksen/pi-deploy ~/pi-deploy
 name: deploy
 on:
   push:
-    branches: [prod]
+    branches: [development]
 
 jobs:
   deploy:
@@ -49,7 +49,7 @@ This clones the project to `~/draupnir` and starts a runner for it.
 ## Deploy
 
 ```sh
-git push origin main:prod
+git push origin development
 ```
 
 See how it went in the repo's **Actions** tab.
