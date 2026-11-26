@@ -1,0 +1,23 @@
+# Shared deploy for all projects on the Pi. Each repo calls this from its own deploy.yml.
+# Contract: the project is cloned at ~/<dir> on the Pi, has a compose file, and keeps .env/data untracked there.
+name: pi-deploy
+on:
+  workflow_call:
+    inputs:
+      dir:
+        type: string
+        required: true
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, linux, ARM64]
+    concurrency: pi-deploy-${{ inputs.dir }}
+    steps:
+      - env:
+          DIR: ${{ inputs.dir }}
+        run: |
+          cd "$HOME/$DIR"
+          git fetch origin prod
+          git checkout -B prod origin/prod   # fails loudly if someone edited tracked files on the Pi
+          docker compose up -d --build
+          docker image prune -f
