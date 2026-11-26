@@ -1,5 +1,5 @@
 # Shared deploy for all projects on the Pi. Each repo calls this from its own deploy.yml.
-# Contract: the project is cloned at ~/<dir> on the Pi, has a compose file, and keeps .env/data untracked there.
+# Contract: the project is cloned at ~/<dir> on the Pi (dir = repo name as on GitHub), has a compose file, and keeps .env/data untracked there.
 name: pi-deploy
 on:
   workflow_call:

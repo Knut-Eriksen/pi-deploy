@@ -19,7 +19,7 @@ git clone https://github.com/Knut-Eriksen/pi-deploy ~/pi-deploy
 
 ## Add a project (once per project)
 
-**1. In the project repo**, add `.github/workflows/deploy.yml`. Change only `dir`, which is the repo name in lowercase:
+**1. In the project repo**, add `.github/workflows/deploy.yml`. Change only `dir`: the repo name exactly as on GitHub, which is also its folder on the Pi:
 
 ```yaml
 name: deploy
@@ -31,7 +31,7 @@ jobs:
   deploy:
     uses: Knut-Eriksen/pi-deploy/.github/workflows/pi-deploy.yml@main
     with:
-      dir: draupnir
+      dir: Draupnir
 ```
 
 The project needs a `compose.yaml` or `docker-compose.yml`.
@@ -42,9 +42,9 @@ The project needs a `compose.yaml` or `docker-compose.yml`.
 ~/pi-deploy/add-runner.sh Draupnir
 ```
 
-This clones the project to `~/draupnir` and starts a runner for it.
+This clones the project to `~/Draupnir` (skipped if it is already there) and starts a runner for it.
 
-**3. Put the project's `.env` file in `~/draupnir`** (it isn't in git).
+**3. Put the project's `.env` file in `~/Draupnir`** (it isn't in git).
 
 ## Deploy
 
