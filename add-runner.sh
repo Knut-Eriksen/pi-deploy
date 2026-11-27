@@ -19,4 +19,4 @@ sudo ./bin/installdependencies.sh >/dev/null
 TOKEN=$(gh api -X POST "repos/$OWNER/$REPO/actions/runners/registration-token" -q .token)
 ./config.sh --unattended --url "https://github.com/$OWNER/$REPO" --token "$TOKEN" --name "$(hostname)-$NAME"
 sudo ./svc.sh install && sudo ./svc.sh start
-echo "done: $REPO deploys from ~/$REPO when you push to development (remember its .env)"
+echo "done: $REPO deploys from ~/$REPO when you push to production (remember its .env)"
