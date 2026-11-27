@@ -15,8 +15,10 @@ jobs:
     steps:
       - env:
           DIR: ${{ inputs.dir }}
+          REPO: ${{ github.repository }}
         run: |
           cd "$HOME/$DIR"
+          git remote set-url origin "https://github.com/$REPO.git"   # ponytail: https, port 22 is blocked from the Pi; auth via gh auth setup-git
           git fetch origin production
           git checkout -B production origin/production   # fails loudly if someone edited tracked files on the Pi
           docker compose up -d --build
